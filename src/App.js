@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { FaEnvelope } from 'react-icons/fa'
+
+
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Tasks from './components/Tasks'
@@ -90,15 +93,17 @@ const App = () => {
   return (
     <Router>
       <div className='container'>
-        <Header
-          onAdd={() => setShowAddTask(!showAddTask)}
-          showAdd={showAddTask}
-        />
+      <FaEnvelope style={{ color : showAddTask ? 'grey':'black' }} className='envelope'/>
         <Routes>
           <Route
             path='/'
             element={
               <>
+                <Header
+                onAdd={() => setShowAddTask(!showAddTask)}
+                showAdd={showAddTask}
+              />
+
                 {showAddTask && <AddTask onAdd={addTask} />}
                 {tasks.length > 0 ? (
                   <Tasks
